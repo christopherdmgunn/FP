@@ -48,7 +48,12 @@ triangles n = [x | x <-[0..n], x<-[x*(x+1) `div` 2]]
 primes :: Int -> [Int]
 primes n = [x | x <-[2..n], [] == [y | y <-[2..x-1],  rem x y == 0]]
 
+--Ex 4
+flatten :: [[a]] -> [a]
+flatten list = [y | x <- list, y <- x]
 
+
+main :: IO ()
 main = do
     
     putStr "Functions \n~~~~~~~~~~~~~~~~~~~~~~~ \n"
@@ -66,23 +71,25 @@ main = do
     print ("Ex4 int 5 to bool to int to string : " ++ show(g intToBool show 5))
 
     --Ex 5
-    print("Ex 5 call a function (doubleX) twice on 5 : " ++ show(twice doubleX 5))
+    print("Ex5 call a function (doubleX) twice on 5 : " ++ show(twice doubleX 5))
 
     --Ex 6
-    print("Ex 6 gravitational pull between objects of mass 50 1 meter apart : " ++ show(gravPull 50.0 50.0 1.0))
+    print("Ex6 gravitational pull between objects of mass 50 1 meter apart : " ++ show(gravPull 50.0 50.0 1.0))
 
     -- List comprehensions
     putStr "\n \n List Comprehensions \n~~~~~~~~~~~~~~~~~~~~~~~ \n"
 
     --Ex 1
-    print("Ex 1 0 to 30 divisable by 3 : " ++ show divBy3)
+    print("Ex1 0 to 30 divisable by 3 : " ++ show divBy3)
 
     --Ex 2
-    print("Ex 2 Displays the first 20 triangle numbers : " ++ show (triangles 20))
+    print("Ex2 Displays the first 20 triangle numbers : " ++ show (triangles 20))
 
     --Ex 3
-    print ("Ex 3 display all prime numbers below 10 : " ++ show (primes 10))
-
+    print ("Ex3 display all prime numbers below 10 : " ++ show (primes 10))
+    
+    --Ex 4
+    print("Ex4 flatten [[1,2,3], [4,5,6], [7,8,9]] into a single list : " ++ show (flatten  [[1,2,3], [4,5,6], [7,8,9]]))
 
 
 --Helpers 
