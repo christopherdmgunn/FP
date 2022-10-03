@@ -77,7 +77,7 @@ main = do
     print("Ex6 gravitational pull between objects of mass 50 1 meter apart : " ++ show(gravPull 50.0 50.0 1.0))
 
     -- List comprehensions
-    putStr "\n \n List Comprehensions \n~~~~~~~~~~~~~~~~~~~~~~~ \n"
+    putStr "\n List Comprehensions \n~~~~~~~~~~~~~~~~~~~~~~~ \n"
 
     --Ex 1
     print("Ex1 0 to 30 divisable by 3 : " ++ show divBy3)
