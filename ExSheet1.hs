@@ -63,6 +63,13 @@ triangles n = [x | x <-[0..n], x<-[x*(x+1) `div` 2]]
 primes :: Int -> [Int]
 primes n = [x | x <-[2..n], null([y | y <-[2..x-1],  rem x y == 0])]
 
+--or
+primes' :: Int -> [Int]
+primes' n = [??? | x <- [1..n], isPrime x]
+    where
+        divisors x = [y | y <- [2..x-1] , x `mod` y == 0]
+        isPrime x = length (divisors x) == 0
+
 --Ex 4
 flatten :: [[a]] -> [a]
 flatten list = [y | x <- list, y <- x]
