@@ -9,7 +9,7 @@ max2 x y  =
 
 --Ex 2
 max3 :: Int -> Int -> Int -> Int 
-max3 x y z  = max2 (max2 x y) z  
+max3 x y z  = max2 z (max2 x y)  
 
 --Ex3 
 f :: (Int -> String) -> (String -> Bool) -> (Int -> Bool)
@@ -46,7 +46,7 @@ triangles n = [x | x <-[0..n], x<-[x*(x+1) `div` 2]]
 
 --Ex 3 
 primes :: Int -> [Int]
-primes n = [x | x <-[2..n], [] == [y | y <-[2..x-1],  rem x y == 0]]
+primes n = [x | x <-[2..n], null([y | y <-[2..x-1],  rem x y == 0])]
 
 --Ex 4
 flatten :: [[a]] -> [a]
@@ -96,7 +96,7 @@ main = do
 
 --string to bool
 stringToBool :: String -> Bool
-stringToBool s = length s /= 0
+stringToBool s = not (null s)
 
 --int to bool 
 intToBool :: Int -> Bool
