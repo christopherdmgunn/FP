@@ -12,12 +12,23 @@ max3 :: Int -> Int -> Int -> Int
 max3 x y z  = max2 z (max2 x y)  
 
 --Ex3 
+--Wrong
 f :: (Int -> String) -> (String -> Bool) -> (Int -> Bool)
 f intToSting stringToBool z = stringToBool(intToSting z) 
 
+--correct answer
+f' :: (Int -> String) -> (String -> Bool) -> (Int -> Bool)
+f' f1 f2 = \i -> f2 (f1 i) 
+--or f' f1 f2 = f2 . f1
+
 --Ex 4
+--Wrong
 g :: (Int -> Bool) -> (Bool -> String) -> Int -> String
 g intToBool boolToString z = boolToString (intToBool z)
+
+--correct answer
+g' :: (Int -> Bool) -> (Bool -> String) -> Int -> String
+g' f1 f2 i = f2 (f1 i)
 
 --Ex 5
 twice :: (Int -> Int) -> Int -> Int
@@ -31,14 +42,18 @@ gravPull m1 m2 d =
         nom = m1 * m2
         denom = d^2
     in 
-        (g * nom )/denom
+        (g * nom)/denom
 
+--or from Lecturer
+force :: Float -> Float -> Float -> Float
+force m1 m2 d = (g*m1*m2)/(d^2)
+    where g = 6.67*(10**(-11))
 
 -- List comprehensions
 
 --Ex 1
 divBy3 :: [Int]
-divBy3 = [x | x<-[0..30], x `mod` 3 == 0 ]
+divBy3 = [x | x<-[1..30], x `mod` 3 == 0 ]
 
 --Ex2
 triangles :: Int -> [Int]
@@ -51,6 +66,10 @@ primes n = [x | x <-[2..n], null([y | y <-[2..x-1],  rem x y == 0])]
 --Ex 4
 flatten :: [[a]] -> [a]
 flatten list = [y | x <- list, y <- x]
+
+--Ex bonus 
+pythagTrip :: Int -> [[Int]]
+pythagTrip n = [[x,y,z] | x <-[1..n], y <-[1..n], z<-[1..n], (x^2)+(y^2)==(z^2)]
 
 
 main :: IO ()
@@ -91,7 +110,7 @@ main = do
     --Ex 4
     print("Ex4 flatten [[1,2,3], [4,5,6], [7,8,9]] into a single list : " ++ show (flatten  [[1,2,3], [4,5,6], [7,8,9]]))
 
-
+    print(pythagTrip 50)
 --Helpers 
 
 --string to bool
