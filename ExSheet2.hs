@@ -1,4 +1,5 @@
 import Data.Char
+import Control.Monad (forM_)
 
 --Functions 
 --Ex1
@@ -51,6 +52,5 @@ echoFile :: FilePath -> IO ()
 echoFile path = do
     x <- readFile path
     let allLines = lines x
-    print (allLines)
     forM_ allLines putStrLn
             
