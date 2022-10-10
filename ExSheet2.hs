@@ -1,5 +1,5 @@
 import Data.Char
-import Control.Monad (forM_)
+import Control.Monad
 
 --Functions 
 --Ex1
@@ -53,4 +53,52 @@ echoFile path = do
     x <- readFile path
     let allLines = lines x
     forM_ allLines putStrLn
-            
+
+
+calculator :: IO()
+calculator = do
+    
+    putStrLn "Give me the operator you would like to use."
+    operator <- getLine
+
+    putStrLn "Now give me the first number."
+    num1 <- getLine
+    let firstNum = read num1 :: Int
+    
+    putStrLn "Now give me the second number."
+    num2 <- getLine
+    let secondNum = read num2 :: Int
+
+    case operator of
+        "-" -> print (firstNum - secondNum)
+        "*" -> print (firstNum * secondNum)
+        _ -> print (firstNum + secondNum)
+
+
+infiniteAppend :: IO ()
+infiniteAppend = do
+    putStr "Please enter filepath "
+    filePath <- getLine
+
+    forever (helpAppend filePath)
+
+
+isbnCheck :: [Int] -> String
+isbnCheck digits = 
+    if digit == 10 
+        then "X" 
+        else (show digit)
+    where
+        coefficients = reverse [2..10]
+        pairs = zipWith (*) coefficients digits
+        summed = sum pairs
+        digit = 11 - (summed `mod` 11)
+
+
+
+--Helper Functions
+helpAppend :: FilePath -> IO ()
+helpAppend filePath = do
+    putStrLn "Please enter text to append to file"
+    text <- getLine
+    appendFile filePath text
