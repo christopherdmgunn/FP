@@ -65,7 +65,7 @@ primes n = [x | x <-[2..n], null([y | y <-[2..x-1],  rem x y == 0])]
 
 --or
 primes' :: Int -> [Int]
-primes' n = [??? | x <- [1..n], isPrime x]
+primes' n = [x | x <- [1..n], isPrime x]
     where
         divisors x = [y | y <- [2..x-1] , x `mod` y == 0]
         isPrime x = length (divisors x) == 0
