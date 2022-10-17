@@ -56,7 +56,11 @@ data ArithExpr =
     | Value Int
 
 evalExpr :: ArithExpr -> Int
-evalExpr _ = undefined
+evalExpr (Value a) = a
+evalExpr (Add a b) = evalExpr a + evalExpr b
+evalExpr (Sub a b) = evalExpr a - evalExpr b
+evalExpr (Mul a b) = evalExpr a * evalExpr b
+evalExpr (Div a b) = evalExpr a `div` evalExpr b
 
 showExpr :: ArithExpr -> String
 showExpr _ = undefined
