@@ -79,7 +79,8 @@ addSafeDiv (i,j) (k,l) = fmap sum $ sequence [safeDiv i j, safeDiv k l]
 data Tree a = Leaf | Node a [Tree a]
 
 sumTree :: Tree Int -> Int
-sumTree _ = undefined
+sumTree Leaf = 0
+sumTree (Node x children) = x + (sum (map sumTree children))
 
 reverseTree :: Tree a -> Tree a
 reverseTree _ = undefined
@@ -90,7 +91,20 @@ toTree :: BinaryTree a -> Tree a
 toTree _ = undefined
 
 fromTree :: Tree a -> Maybe (BinaryTree a)
-fromTree _ = undefined
+fromTree Leaf = Just BLeaf
+fromTree (Node x []) = Just(BNode x BLeaf BLeaf)
+fromTree (Node x [c1]) = 
+    case (fromTree c1) of
+        Just bt1 -> Just (BNode x bt1 BLeaf)
+        Nothing -> Nothing
+
+fromTree (Node x [c1,c2]) = 
+    case (fromTree c1, fromTree c2) of
+        (Just bt1, Just bt2) -> Just (BNode x bt1 bt2)
+        (_,_) -> Nothing
+
+fromTree (Node x _) = Nothing
+
 
 {- Sorting -}
 mergeSort :: (Ord a) => [a] -> [a]
