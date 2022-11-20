@@ -5,4 +5,7 @@ speller (x:xs) = spellerHelper x ++ ", " ++ speller xs
 
 spellerHelper :: String -> String
 spellerHelper x =
-     [head x] ++ " is for " ++  x                                        
+     [head x] ++ " is for " ++  x
+
+
+                                        
